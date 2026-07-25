@@ -1,0 +1,95 @@
+name: Deploy website to IONOS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tomorrowworks-ionos-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      IONOS_SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
+      IONOS_SFTP_PORT: ${{ secrets.IONOS_SFTP_PORT }}
+      IONOS_SFTP_USERNAME: ${{ secrets.IONOS_SFTP_USERNAME }}
+      IONOS_SFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
+      IONOS_SFTP_TARGET: ${{ secrets.IONOS_SFTP_TARGET }}
+      IONOS_SFTP_HOST_KEY: ${{ secrets.IONOS_SFTP_HOST_KEY }}
+
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=()
+          for name in IONOS_SFTP_HOST IONOS_SFTP_USERNAME IONOS_SFTP_PASSWORD; do
+            if [[ -z "${!name:-}" ]]; then
+              missing+=("$name")
+            fi
+          done
+          if (( ${#missing[@]} > 0 )); then
+            printf 'IONOS deployment is not configured yet. Missing GitHub secrets: %s\n' "${missing[*]}"
+            exit 0
+          fi
+
+      - name: Prepare public website files
+        if: ${{ env.IONOS_SFTP_HOST != '' && env.IONOS_SFTP_USERNAME != '' && env.IONOS_SFTP_PASSWORD != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          stage="$RUNNER_TEMP/tomorrowworks-site"
+          mkdir -p "$stage"
+          git archive HEAD | tar -xf - -C "$stage"
+          rm -rf \
+            "$stage/.github" \
+            "$stage/.gitignore" \
+            "$stage/CNAME" \
+            "$stage/README.md"
+          printf 'DEPLOY_STAGE=%s\n' "$stage" >> "$GITHUB_ENV"
+
+      - name: Install SFTP client
+        if: ${{ env.IONOS_SFTP_HOST != '' && env.IONOS_SFTP_USERNAME != '' && env.IONOS_SFTP_PASSWORD != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+
+      - name: Trust the IONOS SFTP host
+        if: ${{ env.IONOS_SFTP_HOST != '' && env.IONOS_SFTP_USERNAME != '' && env.IONOS_SFTP_PASSWORD != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          port="${IONOS_SFTP_PORT:-22}"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          if [[ -n "${IONOS_SFTP_HOST_KEY:-}" ]]; then
+            printf '%s\n' "$IONOS_SFTP_HOST_KEY" > "$HOME/.ssh/known_hosts"
+          else
+            ssh-keyscan -p "$port" -H "$IONOS_SFTP_HOST" > "$HOME/.ssh/known_hosts"
+          fi
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Upload website without deleting remote files
+        if: ${{ env.IONOS_SFTP_HOST != '' && env.IONOS_SFTP_USERNAME != '' && env.IONOS_SFTP_PASSWORD != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          port="${IONOS_SFTP_PORT:-22}"
+          target="${IONOS_SFTP_TARGET:-/tomorrowworks-live-20260723}"
+          lftp \
+            -u "$IONOS_SFTP_USERNAME,$IONOS_SFTP_PASSWORD" \
+            "sftp://$IONOS_SFTP_HOST:$port" \
+            -e "set cmd:fail-exit yes; set net:max-retries 2; set net:timeout 20; set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=/home/runner/.ssh/known_hosts'; mirror --reverse --verbose --parallel=4 --no-perms --no-umask '$DEPLOY_STAGE' '$target'; bye"
