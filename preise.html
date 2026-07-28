@@ -67,6 +67,23 @@
     .preis-treiber b{color:var(--ink)}
     .preis-karte:nth-child(2) .preis-treiber b{color:#fff}
 
+    .vertrauen{padding:118px 0;background:var(--orange-soft)}
+    .vertrauen-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:18px;align-items:stretch}
+    .vertrauen-story,.vertrauen-versprechen{border-radius:28px;padding:44px}
+    .vertrauen-story{background:var(--white);border:1px solid #ffd8c5}
+    .vertrauen-story h2{font-size:clamp(42px,5.1vw,70px);margin:18px 0 25px;max-width:760px}
+    .vertrauen-story h2 em{display:block;font-style:normal;color:var(--orange-text)}
+    .vertrauen-story>p:not(.eyebrow){color:var(--muted);font-size:18px;max-width:760px}
+    .vertrauen-werte{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:32px;list-style:none}
+    .vertrauen-werte li{padding:15px 17px;border-radius:14px;background:var(--paper);color:#4f5356;font-size:13.5px;font-weight:680}
+    .vertrauen-versprechen{display:flex;flex-direction:column;background:var(--night);color:#fff}
+    .versprechen-label{display:inline-flex;width:max-content;padding:8px 11px;border:1px solid rgba(255,255,255,.16);border-radius:999px;color:var(--orange-on-dark);font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+    .vertrauen-versprechen h3{font-size:clamp(30px,3.5vw,45px);margin:28px 0 19px}
+    .vertrauen-versprechen>p{color:#bdc2c7;font-size:16px}
+    .versprechen-klartext{margin-top:auto;padding-top:30px}
+    .versprechen-klartext strong{display:block;margin-bottom:8px;color:#fff;font-size:14px}
+    .versprechen-klartext p{color:#9299a1;font-size:13.5px}
+
     .kalkulation{padding:118px 0;background:var(--paper)}
     .kalkulation-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:90px;align-items:start}
     .kalkulation-kopf{position:sticky;top:112px}
@@ -116,10 +133,11 @@
       .preis-grid{grid-template-columns:1fr}.preis-karte .beschreibung{min-height:0}.preis-karte{padding:28px}
       .kalkulation-grid,.faq-grid{grid-template-columns:1fr;gap:48px}.kalkulation-kopf{position:static}
       .preis-einstieg-inner{grid-template-columns:1fr;gap:28px}.preis-einstieg aside{padding:24px 0 0;border-left:0;border-top:1px solid var(--line)}
+      .vertrauen-grid{grid-template-columns:1fr}
     }
     @media(max-width:680px){
       .preis-hero{padding:110px 0 64px}.preis-hero::after{background-size:38px 38px}.preis-hero h1{font-size:clamp(44px,13.7vw,57px);margin:19px 0 22px}.preis-hero .subhero-lead{font-size:18px}.preis-einstieg{padding-bottom:78px}.preis-einstieg-inner{padding:29px 24px;border-radius:21px}
-      .angebote,.kalkulation,.klarheit,.preis-faq{padding:84px 0}.klarheit-grid{grid-template-columns:1fr}
+      .angebote,.vertrauen,.kalkulation,.klarheit,.preis-faq{padding:84px 0}.vertrauen-story,.vertrauen-versprechen{padding:30px 24px;border-radius:22px}.vertrauen-werte{grid-template-columns:1fr}.klarheit-grid{grid-template-columns:1fr}
       .kalkulation-schritt{grid-template-columns:42px 1fr;padding:21px 18px;gap:15px}.kalkulation-schritt .nr{width:42px;height:42px;border-radius:13px}
       .preis-cta{padding-bottom:84px}.preis-cta-inner{padding:40px 24px;border-radius:23px}.preis-cta p{font-size:17px}
       .preis-auswahl{margin-bottom:25px}.preis-cta .button{width:100%}
@@ -235,6 +253,31 @@
       </div>
     </section>
 
+    <section class="vertrauen" aria-labelledby="vertrauen-titel">
+      <div class="wrap vertrauen-grid">
+        <article class="vertrauen-story reveal">
+          <p class="eyebrow">Unsere Haltung</p>
+          <h2 id="vertrauen-titel">KI soll Chancen schaffen – <em>nicht Budgets sprengen.</em></h2>
+          <p>Viele junge Unternehmen haben Ideen, Energie und Kundennähe – aber kein fünfstelliges Digitalbudget. Genau deshalb gibt es unseren Gründer-Piloten: Wir möchten kleinen Betrieben einen fairen Einstieg in Website, Kundenkontakt und KI ermöglichen, ohne ihnen eine unnötig große Lösung zu verkaufen.</p>
+          <ul class="vertrauen-werte" aria-label="Unsere Fairness-Grundsätze">
+            <li>Nur Funktionen, die wirklich gebraucht werden</li>
+            <li>Kosten und Zusatzleistungen vorab klären</li>
+            <li>Persönliche Begleitung statt anonymer Plattform</li>
+            <li>Klein starten und nach echtem Bedarf wachsen</li>
+          </ul>
+        </article>
+        <article class="vertrauen-versprechen reveal">
+          <span class="versprechen-label">Unser 30-Tage-Live-Versprechen</span>
+          <h3>In 30 Tagen sichtbar und messbar starten.</h3>
+          <p>Sobald Inhalte, Zugänge und Freigaben vollständig vorliegen, bringen wir die vereinbarte erste Version innerhalb von 30 Kalendertagen live. Danach messen wir Anfragen und Kontaktwege und verbessern die Lösung gemeinsam.</p>
+          <div class="versprechen-klartext">
+            <strong>Fair heißt auch: ehrlich versprechen.</strong>
+            <p>Ob ein Interessent tatsächlich kauft, hängt auch von Angebot, Nachfrage, Region, Preis und Werbereichweite ab. Deshalb garantieren wir keine bestimmte Zahl neuer Kunden – sondern eine funktionierende, messbare Grundlage und aktive Optimierung.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="kalkulation" aria-labelledby="kalkulation-titel">
       <div class="wrap kalkulation-grid">
         <div class="kalkulation-kopf reveal">
@@ -326,6 +369,10 @@
           <details>
             <summary>Was passiert nach den ersten sechs Monaten?</summary>
             <p>Nach der Mindestlaufzeit kann das Paket monatlich gekündigt werden. Der vereinbarte Monatspreis bleibt in den ersten zwölf Monaten garantiert; es gibt keine automatische jährliche Preiserhöhung.</p>
+          </details>
+          <details>
+            <summary>Was bedeutet das 30-Tage-Live-Versprechen?</summary>
+            <p>Sobald alle vereinbarten Inhalte, Zugänge und Freigaben vollständig vorliegen, veröffentlichen wir die erste vereinbarte Version innerhalb von 30 Kalendertagen. Wir richten messbare Kontaktwege ein und optimieren anschließend gemeinsam. Eine bestimmte Zahl neuer Kunden können wir seriös nicht garantieren, weil auch Angebot, Nachfrage, Region, Preis und Werbebudget das Ergebnis beeinflussen.</p>
           </details>
           <details>
             <summary>Kann TOMORROWWORKS bestehende Lösungen weiterentwickeln?</summary>
