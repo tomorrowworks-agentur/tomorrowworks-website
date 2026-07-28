@@ -71,6 +71,7 @@
     resultText.textContent = `Referenz ${inquiry.fields.reference}. Wir melden uns persönlich bei Ihnen.`;
     result.classList.add('is-visible');
     setStatus('Erfolgreich übermittelt.', 'success');
+    window.gaertnerAdsTrack?.('form');
     form.reset();
   };
 
