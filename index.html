@@ -179,6 +179,13 @@
   .practice-proof-facts{display:flex;gap:8px;flex-wrap:wrap}
   .practice-proof-facts span{padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#cbd0d4;font-size:11px;font-weight:680}
 
+  .portfolio-pulse{padding:58px 0;background:var(--paper-2)}
+  .portfolio-pulse-card{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:34px;align-items:center;padding:30px;border:1px solid rgba(17,19,21,.08);border-radius:28px;background:#fff;box-shadow:0 18px 50px rgba(17,19,21,.06)}
+  .portfolio-pulse-count{display:grid;place-items:center;align-content:center;min-height:130px;border-radius:20px;background:var(--night);color:#fff;text-align:center}
+  .portfolio-pulse-count strong{color:var(--orange);font-size:62px;line-height:.9;letter-spacing:-.07em}.portfolio-pulse-count span{margin-top:9px;color:#bbc1c5;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  .portfolio-pulse-copy .eyebrow{margin-bottom:8px}.portfolio-pulse-copy h2{font-size:clamp(31px,3.4vw,48px);margin-bottom:9px}.portfolio-pulse-copy h2 em{color:var(--orange);font-style:normal}.portfolio-pulse-copy p:last-child{max-width:700px;color:var(--muted);font-size:14px}
+  .portfolio-pulse .button{white-space:nowrap}
+
   /* Problem */
   .problem{padding:132px 0}
   .problem-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px;align-items:start}
@@ -519,7 +526,7 @@
     .nav-shell{min-height:68px;gap:9px}.brand-mark{width:28px;height:28px}.brand-name{font-size:15px}.nav-shell > .nav-cta{min-height:40px;padding:0 12px;font-size:11px;white-space:nowrap}.menu-button{width:40px;height:40px}
     .hero{padding:106px 0 62px;background-size:auto 720px}.hero-copy{text-align:left}.hero .eyebrow{justify-content:flex-start;font-size:11px}.hero h1{font-size:clamp(44px,12.8vw,52px);margin:20px 0}.hero-lead{font-size:17px}.hero-actions{justify-content:flex-start;display:grid}.button{width:100%;min-height:51px}.hero-note{text-align:center}.hero-proof{justify-content:flex-start;gap:11px 18px;margin-top:32px}.hero-proof span{font-size:11px}
     .hero-proof{display:none}.product-stage{min-height:490px;margin:0 -6px}.console{padding:10px;border-radius:24px;transform:none}.console-body{grid-template-columns:1fr;min-height:384px}.console-side{display:none}.console-main{padding:20px 17px}.console-title .ui-heading{font-size:19px}.incoming{padding:13px}.automation-line{grid-template-columns:1fr 22px 1fr}.auto-card{padding:10px}.practice-card{width:158px;right:-3px;bottom:-28px;padding:7px}.practice-card img{height:75px}.practice-card p{font-size:9px}
-    .practice-proof{padding:28px 0}.practice-proof-copy{grid-template-columns:36px 1fr;gap:13px}.practice-proof-no{width:36px;height:36px}.practice-proof h2{font-size:27px}.practice-proof-actions{display:grid}.practice-proof-actions .button{width:100%}.practice-proof-facts{gap:6px}.practice-proof-facts span{font-size:10px}
+    .practice-proof{padding:28px 0}.practice-proof-copy{grid-template-columns:36px 1fr;gap:13px}.practice-proof-no{width:36px;height:36px}.practice-proof h2{font-size:27px}.practice-proof-actions{display:grid}.practice-proof-actions .button{width:100%}.practice-proof-facts{gap:6px}.practice-proof-facts span{font-size:10px}.portfolio-pulse-count{min-height:110px}.portfolio-pulse-count strong{font-size:50px}
     .problem,.flow,.capabilities,.method{padding:92px 0}.problem-grid{gap:45px}.problem h2,.section-head h2,.method h2{font-size:42px}.problem-copy{font-size:17px}.friction{grid-template-columns:42px 1fr;padding:14px}.friction i{width:39px;height:39px}
     .cases{padding:92px 0;border-radius:30px 30px 0 0}.section-head{margin-bottom:38px}.section-head > p{font-size:16px}.case-feature{padding:10px;border-radius:24px}.browser-frame{min-height:290px}.cockpit-photo{min-height:0;aspect-ratio:16/10;border-radius:17px}.cockpit-photo img{min-height:0}.cockpit-visual-note{left:10px;bottom:10px;font-size:7px}.cockpit-map{min-height:auto;padding:14px}.cockpit-tools{grid-template-columns:repeat(2,1fr)}.cockpit-network{grid-template-columns:1fr;padding-top:13px}.cockpit-network::before{display:none}.cockpit-node{min-height:0}.cockpit-node::before{display:none}.cockpit-caption{padding-top:10px}.case-copy{padding:22px 12px 16px}.case-copy h3{font-size:36px}.case-small{grid-template-columns:1fr}.case-small picture{min-height:210px;max-height:230px}.case-small-content{padding:24px}.case-small-content h3{font-size:25px}.case-reference picture{min-height:230px;max-height:250px}.case-reference .case-small-content{padding:27px 24px}.case-reference .case-small-content h3{font-size:27px}.reference-duo{min-height:290px}.reference-inset{right:10px;bottom:10px;width:65%;height:46%;border-width:3px;border-radius:10px}
     .flow-step{min-height:230px;padding:25px}.flow-icon{margin-bottom:33px}
@@ -538,7 +545,7 @@
   }
   @media (max-width:860px){
     .studio-stage{min-height:610px}.service-grid{grid-template-columns:1fr}.service-card.ai{grid-column:auto}.service-card{min-height:470px}
-    .practice-proof-grid{grid-template-columns:1fr;gap:24px}.practice-proof-actions{justify-content:flex-start}
+    .practice-proof-grid{grid-template-columns:1fr;gap:24px}.practice-proof-actions{justify-content:flex-start}.portfolio-pulse{padding:40px 0}.portfolio-pulse-card{grid-template-columns:1fr;padding:20px}.portfolio-pulse-count{min-height:102px}.portfolio-pulse .button{grid-column:auto}
     .print-shell{grid-template-columns:1fr}.print-actions{display:flex;min-width:0;flex-wrap:wrap}.print-actions .button{width:auto}
     .delivery-grid{grid-template-columns:1fr 1fr}.delivery-step:nth-child(2){border-right:0}.delivery-step:nth-child(-n+2){border-bottom:1px solid #dcd9d2}
     .price-bridge-card{grid-template-columns:1fr}.price-bridge-card .button{width:max-content}
@@ -629,6 +636,16 @@
       <div class="practice-proof-actions">
         <div class="practice-proof-facts" aria-label="Bereiche des Werkstattcockpits"><span>Werkstattboard</span><span>Partnerportal</span><span>Kundenstatus</span></div>
         <a class="button secondary" href="projekt-terminportal.html">Praxisprojekt ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-pulse" aria-labelledby="portfolio-pulse-title">
+    <div class="wrap">
+      <div class="portfolio-pulse-card reveal">
+        <div class="portfolio-pulse-count" aria-hidden="true"><strong>7</strong><span>Vorhaben im Studio</span></div>
+        <div class="portfolio-pulse-copy"><p class="eyebrow">Das Studio wächst</p><h2 id="portfolio-pulse-title">Neue Branchen. <em>Neue digitale Wege.</em></h2><p>Drei Vorhaben sind öffentlich oder im eigenen Betrieb im Einsatz. Vier weitere Website-Richtungen zeigen wir anonymisiert als Konzeptstudien – klar getrennt von freigegebenen Referenzen.</p></div>
+        <a class="button secondary" href="projekte.html#neue-arbeiten">Neue Arbeiten ansehen</a>
       </div>
     </div>
   </section>
